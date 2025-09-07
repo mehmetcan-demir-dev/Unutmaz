@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="Unutmaz.Pages.KisiselAlisverisOlustur"
+             Title="Alışveriş Listesi Oluştur"
+             BackgroundColor="#FAFAFA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="10">
+
+            <!-- Sekmeler -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Serbest" Clicked="OnSerbestModClicked" x:Name="BtnSerbestMod"
+                        BackgroundColor="#A3C4BC" TextColor="White" FontAttributes="Bold" CornerRadius="8" />
+                <Button Text="Standart" Clicked="OnStandartModClicked" x:Name="BtnStandartMod"
+                        BackgroundColor="#F0F0F0" TextColor="#444" FontAttributes="Bold" CornerRadius="8" />
+            </HorizontalStackLayout>
+
+            <StackLayout x:Name="LayoutSerbest" IsVisible="True">
+
+                <!-- Ürün Adı -->
+                <Frame BackgroundColor="#F5F5F5" CornerRadius="8" Padding="10" HasShadow="False" Margin="0,0,0,15">
+                    <Entry x:Name="EntryUrun"
+                   Keyboard="Text"
+                   Placeholder="Ürün adı (örn: peynir)"
+                   FontSize="16"
+                   TextColor="#444444"
+                   BackgroundColor="Transparent" />
+                </Frame>
+
+                <!-- Miktar -->
+                <Frame BackgroundColor="#F5F5F5" CornerRadius="8" Padding="10" HasShadow="False" Margin="0,0,0,15">
+                    <Entry x:Name="EntryMiktar"
+                   Keyboard="Text"
+                   Placeholder="Miktar ve birim (örn: 1 kg, 0.5 lt)"
+                   FontSize="16"
+                   TextColor="#444444"
+                   BackgroundColor="Transparent" />
+                </Frame>
+
+                <DatePicker x:Name="DatePickerSerbestTarih"
+                MinimumDate="{x:Static sys:DateTime.Today}"
+                FontSize="16"
+                TextColor="#444444"
+                Margin="0,0,0,15" />
+
+                <Button x:Name="BtnListeyeEkle"
+                Text="Listeye Ekle"
+                BackgroundColor="#A3C4BC"
+                TextColor="#2F4F4F"
+                FontAttributes="Bold"
+                HeightRequest="48"
+                CornerRadius="10"
+                Clicked="BtnListeyeEkle_Clicked" />
+            </StackLayout>
+
+        
+            <!-- STANDART MOD -->
+            <StackLayout x:Name="LayoutStandart" IsVisible="False" Spacing="6">
+
+                <Picker x:Name="PickerKategori" Title="Kategori Seçiniz" Margin="0,0,0,4"/>
+
+                <Picker x:Name="PickerUrun" Title="Ürün Seçiniz" Margin="0,0,0,4"/>
+
+                <Frame BackgroundColor="#F5F5F5" CornerRadius="8" Padding="5" HasShadow="False" Margin="0,0,0,6">
+                    <Entry x:Name="EntryStandartMiktar"
+               Placeholder="Miktar ve birim (örn: 1 kg, 0.5 lt)"
+               FontSize="16"
+               TextColor="#444444"
+               BackgroundColor="Transparent"
+               HeightRequest="36" />
+                </Frame>
+
+                <DatePicker x:Name="DatePickerStandartTarih"
+                MinimumDate="{x:Static sys:DateTime.Today}"
+                FontSize="16"
+                TextColor="#444444"
+                Margin="0,0,0,6"
+                HeightRequest="40" />
+
+                <Button x:Name="BtnListeyeEkleStandart" 
+            Text="Listeye Ekle"
+            BackgroundColor="#A3C4BC"
+            TextColor="#2F4F4F"
+            FontAttributes="Bold"
+            HeightRequest="42"
+            CornerRadius="10"
+            Clicked="OnListeyeEkle_Standart_Clicked" />
+            </StackLayout>
+
+
+            <Entry x:Name="EntryListeBasligi"
+           FontSize="18"
+           TextColor="#7D7D7D"
+           FontAttributes="Bold"
+           Margin="0,10,0,10"
+           BackgroundColor="Transparent"
+           Placeholder="Listeyi İsimlendirebilirsiniz"
+           HorizontalTextAlignment="Start"
+           HeightRequest="40" />
+
+            <!-- Liste -->
+            <Frame BackgroundColor="White" CornerRadius="12" HasShadow="False" Padding="0" BorderColor="#E0E0E0" >
+                <CollectionView x:Name="ListViewAlisveris"
+                                SelectionMode="None"
+                                HeightRequest="300"
+                                Margin="0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" Margin="5" BackgroundColor="#E8F0F2" CornerRadius="8" HasShadow="False" BorderColor="#C8D8DD">
+                                <Label Text="{Binding}" FontSize="14" TextColor="#3B4A50" HorizontalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnItemTapped" NumberOfTapsRequired="1" />
+                                        <TapGestureRecognizer Tapped="OnItemDoubleTapped" NumberOfTapsRequired="2" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+            <!-- Butonlar -->
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center" Margin="0,1,0,0">
+                <Button Text="Listeyi Tamamla"
+                        BackgroundColor="#7CA982"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        HeightRequest="44"
+                        WidthRequest="140"
+                        CornerRadius="10"
+                        Clicked="BtnListeyiTamamla_Clicked" />
+
+                <Button Text="Listeyi Temizle"
+                        BackgroundColor="#E1B0AA"
+                        TextColor="#6B3B3B"
+                        FontAttributes="Bold"
+                        HeightRequest="44"
+                        WidthRequest="140"
+                        CornerRadius="10"
+                        Clicked="BtnListeyiTemizle_Clicked" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
