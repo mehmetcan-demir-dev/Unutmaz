@@ -16,6 +16,7 @@ namespace Unutmaz
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("DancingScript-Regular.ttf", "DancingScript");
                 });
             builder.Services.AddSingleton<DatabaseService>();
             builder.Services.AddSingleton<ShoppingCategoryService>();

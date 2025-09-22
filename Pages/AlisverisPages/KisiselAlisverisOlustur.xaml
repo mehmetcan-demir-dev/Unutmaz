@@ -22,21 +22,25 @@
                 <!-- Ürün Adı -->
                 <Frame BackgroundColor="#F5F5F5" CornerRadius="8" Padding="10" HasShadow="False" Margin="0,0,0,15">
                     <Entry x:Name="EntryUrun"
-                   Keyboard="Text"
-                   Placeholder="Ürün adı (örn: peynir)"
-                   FontSize="16"
-                   TextColor="#444444"
-                   BackgroundColor="Transparent" />
+                           Keyboard="Text"
+                           Placeholder="Ürün adı (örn: peynir)"
+                           FontSize="16"
+                           TextColor="#444444"
+                           BackgroundColor="Transparent"
+                           IsSpellCheckEnabled="False"
+                           IsTextPredictionEnabled="False" />
                 </Frame>
 
                 <!-- Miktar -->
                 <Frame BackgroundColor="#F5F5F5" CornerRadius="8" Padding="10" HasShadow="False" Margin="0,0,0,15">
                     <Entry x:Name="EntryMiktar"
-                   Keyboard="Text"
-                   Placeholder="Miktar ve birim (örn: 1 kg, 0.5 lt)"
-                   FontSize="16"
-                   TextColor="#444444"
-                   BackgroundColor="Transparent" />
+                           Keyboard="Text"
+                           Placeholder="Miktar ve birim (örn: 1 kg, 0.5 lt)"
+                           FontSize="16"
+                           TextColor="#444444"
+                           BackgroundColor="Transparent"
+                           IsSpellCheckEnabled="False"
+                           IsTextPredictionEnabled="False" />
                 </Frame>
 
                 <DatePicker x:Name="DatePickerSerbestTarih"
@@ -55,7 +59,7 @@
                 Clicked="BtnListeyeEkle_Clicked" />
             </StackLayout>
 
-        
+
             <!-- STANDART MOD -->
             <StackLayout x:Name="LayoutStandart" IsVisible="False" Spacing="6">
 
@@ -65,11 +69,13 @@
 
                 <Frame BackgroundColor="#F5F5F5" CornerRadius="8" Padding="5" HasShadow="False" Margin="0,0,0,6">
                     <Entry x:Name="EntryStandartMiktar"
-               Placeholder="Miktar ve birim (örn: 1 kg, 0.5 lt)"
-               FontSize="16"
-               TextColor="#444444"
-               BackgroundColor="Transparent"
-               HeightRequest="36" />
+                           Placeholder="Miktar ve birim (örn: 1 kg, 0.5 lt)"
+                           FontSize="16"
+                           TextColor="#444444"
+                           BackgroundColor="Transparent"
+                           HeightRequest="36"
+                           IsSpellCheckEnabled="False"
+                           IsTextPredictionEnabled="False" />
                 </Frame>
 
                 <DatePicker x:Name="DatePickerStandartTarih"
@@ -91,20 +97,22 @@
 
 
             <Entry x:Name="EntryListeBasligi"
-           FontSize="18"
-           TextColor="#7D7D7D"
-           FontAttributes="Bold"
-           Margin="0,10,0,10"
-           BackgroundColor="Transparent"
-           Placeholder="Listeyi İsimlendirebilirsiniz"
-           HorizontalTextAlignment="Start"
-           HeightRequest="40" />
+                   FontSize="18"
+                   TextColor="#7D7D7D"
+                   FontAttributes="Bold"
+                   Margin="0,10,0,10"
+                   BackgroundColor="Transparent"
+                   Placeholder="Listeyi İsimlendirebilirsiniz"
+                   HorizontalTextAlignment="Start"
+                   HeightRequest="40"
+                   IsSpellCheckEnabled="False"
+                   IsTextPredictionEnabled="False" />
 
             <!-- Liste -->
             <Frame BackgroundColor="White" CornerRadius="12" HasShadow="False" Padding="0" BorderColor="#E0E0E0" >
                 <CollectionView x:Name="ListViewAlisveris"
                                 SelectionMode="None"
-                                HeightRequest="300"
+                                HeightRequest="250"
                                 Margin="0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>

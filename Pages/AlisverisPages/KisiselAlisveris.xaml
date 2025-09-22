@@ -23,12 +23,13 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Başlık ve Arşiv Butonu -->
+        <!-- Başlık ve Butonlar -->
         <Grid Grid.Row="0" Margin="0,0,0,15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
@@ -50,13 +51,30 @@
                     Grid.Column="1"
                     Clicked="BtnSiralama_Clicked" />
 
-            <Button Text="Arşiv"
+            <!-- Yeni Liste Oluştur Butonu -->
+            <Button x:Name="BtnYeniListe"
+                    Text="+"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    WidthRequest="45"
+                    HeightRequest="45"
+                    CornerRadius="22"
+                    Grid.Column="3"
+                    Margin="0,0,10,0"
+                    Clicked="OnYeniListeOlusturClicked" />
+
+            <!-- Arşiv Butonu -->
+            <Button x:Name="BtnArsiv"
+                    Text="📁"
+                    FontSize="18"
                     BackgroundColor="#4CAF50"
                     TextColor="White"
-                    FontSize="14"
-                    CornerRadius="8"
-                    Padding="15,8"
-                    Grid.Column="3"
+                    WidthRequest="45"
+                    HeightRequest="45"
+                    CornerRadius="22"
+                    Grid.Column="4"
                     Clicked="OnArsivButonuClicked" />
         </Grid>
 

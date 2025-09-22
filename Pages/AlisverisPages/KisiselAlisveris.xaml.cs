@@ -143,6 +143,12 @@ public partial class KisiselAlisveris : ContentPage
         }
     }
 
+    // Yeni Liste Oluştur butonu için yeni method
+    private async void OnYeniListeOlusturClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new KisiselAlisverisOlustur());
+    }
+
     private async void OnMenuTapped(object sender, EventArgs e)
     {
         if (sender is Label label && label.BindingContext is KisiselAlisverisListesiModel liste)

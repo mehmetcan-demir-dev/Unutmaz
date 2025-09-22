@@ -3,61 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Unutmaz.IntroPage"
              BackgroundColor="White">
-
     <Grid>
-        <!-- Ana İçerik -->
-        <VerticalStackLayout Spacing="30"
-                             Padding="20"
-                             VerticalOptions="Center"
-                             HorizontalOptions="Center">
+        <!-- Typewriter text container -->
+        <StackLayout x:Name="TypingStack"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     Margin="20,60,20,0"
+                     Spacing="8">
 
-            <!-- Sayaç - Sol Üstte -->
-            <Label x:Name="CountdownLabel"
-                   Text="00:07:00"
-                   FontSize="18"
-                   FontAttributes="Bold"
+            <!-- First line of typewriter text -->
+            <Label x:Name="Line1Label"
+                   Text=""
+                   FontSize="20"
                    HorizontalOptions="Start"
                    VerticalOptions="Start"
-                   TextColor="Black"
-                   Margin="0,0,0,40" />
+                   TextColor="Black" />
 
-            <!-- Ana Mesaj Alanı -->
-            <StackLayout x:Name="MessageContainer" 
-                         VerticalOptions="Center" 
-                         HorizontalOptions="Center">
+            <!-- Second line of typewriter text (with formatted text) -->
+            <Label x:Name="Line2Label"
+                   Text=""
+                   FontSize="20"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   TextColor="Black" />
+        </StackLayout>
 
-                <Label x:Name="WelcomeLabel"
-                       Text=""
-                       FontSize="22"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"
-                       TextColor="#2C3E50"
-                       HorizontalTextAlignment="Center"
-                       Margin="0,0,0,15" />
-
-                <Label x:Name="IntroLabel"
-                       Text=""
-                       FontSize="18"
-                       HorizontalOptions="Center"
-                       TextColor="#34495E"
-                       HorizontalTextAlignment="Center"
-                       LineBreakMode="WordWrap" />
-
-            </StackLayout>
-
-            <!-- Başlayalım Butonu -->
-            <Button x:Name="StartButton"
-                    Text="Başlayalım"
-                    FontSize="18"
-                    Padding="20,12"
-                    BackgroundColor="#3498DB"
-                    TextColor="White"
-                    CornerRadius="25"
-                    IsVisible="False"
-                    Clicked="OnStartClicked"
-                    Margin="0,30,0,0" />
-
-        </VerticalStackLayout>
+        <!-- Start button (initially hidden) -->
+        <Button x:Name="StartButton"
+                Text="Başlayalım"
+                Clicked="OnStartClicked"
+                IsVisible="False"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BackgroundColor="#512BD4"
+                TextColor="White"
+                FontSize="18"
+                CornerRadius="25"
+                WidthRequest="160"
+                HeightRequest="50"/>
     </Grid>
-
 </ContentPage>

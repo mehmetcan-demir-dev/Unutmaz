@@ -27,13 +27,48 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Alışveriş Butonu -->
-                <Frame BackgroundColor="#FF6F61" Grid.Row="0" Grid.Column="0" CornerRadius="20" HasShadow="False" HeightRequest="150" WidthRequest="150">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Alisveris" />
-                    </Frame.GestureRecognizers>
-                    <Label Text="Alışveriş" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" FontAttributes="Bold"/>
-                </Frame>
+                <!-- Alışveriş Butonu ve Alt Butonları -->
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <!-- Ana Alışveriş Butonu -->
+                    <Frame x:Name="AlisverisButton" 
+                           BackgroundColor="#FF6F61" 
+                           CornerRadius="20" 
+                           HasShadow="False" 
+                           HeightRequest="150" 
+                           WidthRequest="150">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Alisveris" />
+                        </Frame.GestureRecognizers>
+                        <Label Text="Alışveriş" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" FontAttributes="Bold"/>
+                    </Frame>
+
+                    <!-- Alt Butonlar (Kişisel ve Aile) -->
+                    <StackLayout x:Name="AlisverisSubButtons" IsVisible="False" Spacing="5" VerticalOptions="Center">
+                        <Frame BackgroundColor="#6B5B95" 
+                               CornerRadius="15" 
+                               HasShadow="False" 
+                               HeightRequest="72.5" 
+                               WidthRequest="150"
+                               Padding="0">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnKisiselAlisverisClicked" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="Kişisel" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+                        </Frame>
+
+                        <Frame BackgroundColor="#88B04B" 
+                               CornerRadius="15" 
+                               HasShadow="False" 
+                               HeightRequest="72.5" 
+                               WidthRequest="150"
+                               Padding="0">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAileAlisverisClicked" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="Aile" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="16" FontAttributes="Bold"/>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
 
                 <!-- Diğer kategori butonları -->
                 <Frame BackgroundColor="#6B5B95" Grid.Row="0" Grid.Column="1" CornerRadius="20" HasShadow="False" HeightRequest="150" WidthRequest="150">
@@ -87,107 +122,6 @@
 
             </Grid>
         </StackLayout>
-
-        <!-- Kategori Seçim Overlay -->
-        <Grid x:Name="SelectionOverlay" IsVisible="False" BackgroundColor="#80000000">
-
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10" Padding="20">
-
-                <Grid x:Name="PlusNextButtonGrid" IsVisible="False" Margin="0,-20,0,0" HorizontalOptions="Start" WidthRequest="130">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="45" />
-                        <!-- Boşluk için sütun -->
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <Button x:Name="PlusButton"
-            Text="+"
-            BackgroundColor="#FF9800"
-            TextColor="White"
-            WidthRequest="50"
-            HeightRequest="50"
-            CornerRadius="25"
-            FontSize="24"
-            FontAttributes="Bold"
-            Grid.Column="0"
-            Clicked="OnPlusButtonClicked" />
-
-                    <!-- Boşluk sütunu burada -->
-
-                    <Button x:Name="NextButton"
-            Text=">"
-            BackgroundColor="#4CAF50"
-            TextColor="White"
-            WidthRequest="50"
-            HeightRequest="50"
-            CornerRadius="25"
-            FontSize="24"
-            FontAttributes="Bold"
-            Grid.Column="2"
-            Clicked="OnNextButtonClicked" />
-                </Grid>
-
-
-
-
-                <!-- Kişisel ve Aile Butonları (üstte, + ve > butonlarının hemen altında) -->
-                <HorizontalStackLayout HorizontalOptions="Center" Spacing="40" Margin="0,0,0,10">
-
-                    <StackLayout HorizontalOptions="Center">
-
-                        <Button x:Name="KisiselButton"
-                                Text="Kişisel"
-                                BackgroundColor="#6B5B95"
-                                TextColor="White"
-                                WidthRequest="150"
-                                HeightRequest="80"
-                                CornerRadius="40"
-                                FontSize="22"
-                                FontAttributes="Bold"
-                                Clicked="OnKisiselClicked"/>
-                    </StackLayout>
-
-                    <Button x:Name="AileButton"
-                            Text="Aile"
-                            BackgroundColor="#88B04B"
-                            TextColor="White"
-                            WidthRequest="150"
-                            HeightRequest="80"
-                            CornerRadius="40"
-                            FontSize="22"
-                            FontAttributes="Bold"
-                            Clicked="OnAileClicked"/>
-
-                </HorizontalStackLayout>
-
-                <!-- Alışveriş Butonu büyüyerek ortada -->
-                <Frame x:Name="AlisverisBigButton"
-                       BackgroundColor="#FF6F61"
-                       CornerRadius="25"
-                       Padding="20,15"
-                       HasShadow="True"
-                       HorizontalOptions="Center"
-                       Margin="10,0,10,10"
-                       HeightRequest="75"
-                       WidthRequest="200"
-                       IsVisible="False">
-                    <Label Text="Alışveriş" TextColor="White" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center"/>
-                </Frame>
-
-                <!-- Geri Dön Butonu -->
-                <Button Text="← Geri Dön"
-                        BackgroundColor="#607D8B"
-                        TextColor="White"
-                        WidthRequest="200"
-                        HeightRequest="50"
-                        CornerRadius="25"
-                        FontSize="18"
-                        HorizontalOptions="Center"
-                        Clicked="OnBackButtonClicked"/>
-
-            </StackLayout>
-        </Grid>
 
     </Grid>
 </ContentPage>

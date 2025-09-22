@@ -8,6 +8,7 @@ namespace Unutmaz
     public partial class MainPage : ContentPage
     {
         private string _selectedCategory = "";
+        private bool _isAlisverisExpanded = false;
 
         public MainPage()
         {
@@ -17,17 +18,11 @@ namespace Unutmaz
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            // Sayfa her göründüğünde geçici tüm öğeleri gizle
-            SelectionOverlay.IsVisible = false;
-            MainMenu.IsEnabled = true;
-
-            KisiselButton.IsVisible = false;
-            AileButton.IsVisible = false;
-            AlisverisBigButton.IsVisible = false;
-            PlusNextButtonGrid.IsVisible = false;
-
+            // Sayfa her göründüğünde başlangıç durumuna getir
             _selectedCategory = "";
+            _isAlisverisExpanded = false;
+            AlisverisButton.IsVisible = true;
+            AlisverisSubButtons.IsVisible = false;
         }
 
         private void OnCategoryTapped(object sender, EventArgs e)
@@ -40,59 +35,38 @@ namespace Unutmaz
 
                 if (category == "Alisveris")
                 {
-                    SelectionOverlay.IsVisible = true;
-                    MainMenu.IsEnabled = false;
-
-                    AlisverisBigButton.IsVisible = true;
-                    KisiselButton.IsVisible = true;
-                    AileButton.IsVisible = true;
-
-                    PlusNextButtonGrid.IsVisible = false;
+                    // Alışveriş butonunu gizle, alt butonları göster
+                    AlisverisButton.IsVisible = false;
+                    AlisverisSubButtons.IsVisible = true;
+                    _isAlisverisExpanded = true;
                 }
                 else
                 {
-                    SelectionOverlay.IsVisible = false;
-                    MainMenu.IsEnabled = true;
+                    // Diğer kategoriler için normal işlem
+                    DisplayAlert("Kategori", $"{category} kategorisi seçildi", "Tamam");
                 }
             }
         }
 
-        private void OnKisiselClicked(object sender, EventArgs e)
-        {
-            PlusNextButtonGrid.IsVisible = !PlusNextButtonGrid.IsVisible;
-        }
-
-        private void OnAileClicked(object sender, EventArgs e)
-        {
-            PlusNextButtonGrid.IsVisible = false;
-            DisplayAlert("Bilgi", "Aile kategorisi seçildi", "Tamam");
-        }
-
-        private async void OnPlusButtonClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new KisiselAlisverisOlustur());
-        }
-
-        private async void OnNextButtonClicked(object sender, EventArgs e)
+        private async void OnKisiselAlisverisClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new KisiselAlisveris());
         }
 
-        private void OnBackButtonClicked(object sender, EventArgs e)
+        private void OnAileAlisverisClicked(object sender, EventArgs e)
         {
-            SelectionOverlay.IsVisible = false;
-            PlusNextButtonGrid.IsVisible = false;
-
-            _selectedCategory = "";
-            MainMenu.IsEnabled = true;
+            DisplayAlert("Bilgi", "Aile alışverişi kategorisi seçildi", "Tamam");
         }
 
         protected override bool OnBackButtonPressed()
         {
-            if (SelectionOverlay.IsVisible)
+            if (_isAlisverisExpanded)
             {
-                OnBackButtonClicked(null, null);
-                return true;
+                // Eğer alışveriş genişletilmişse, geri butonu ile normal haline getir
+                AlisverisButton.IsVisible = true;
+                AlisverisSubButtons.IsVisible = false;
+                _isAlisverisExpanded = false;
+                return true; // Back butonunu tüket
             }
             return base.OnBackButtonPressed();
         }
