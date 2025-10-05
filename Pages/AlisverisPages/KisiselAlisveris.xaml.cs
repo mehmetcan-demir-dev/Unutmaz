@@ -256,8 +256,9 @@ public partial class KisiselAlisveris : ContentPage
                 // UI'ı güncelle
                 kayitliListeler.Remove(liste);
 
+                string listeBasligi = liste.ListeBasligi;
                 await DisplayAlert("Başarılı",
-                    $"'{liste.ListeBasligi}' listesi arşive gönderildi.",
+                    $"'{listeBasligi}' listesi arşive gönderildi.",
                     "Tamam");
             }
             catch (Exception ex)

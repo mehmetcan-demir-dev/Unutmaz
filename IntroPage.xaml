@@ -8,7 +8,7 @@
         <StackLayout x:Name="TypingStack"
                      HorizontalOptions="Start"
                      VerticalOptions="Start"
-                     Margin="20,60,20,0"
+                     Margin="20,260,20,0"
                      Spacing="8">
 
             <!-- First line of typewriter text -->
